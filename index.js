@@ -33,7 +33,6 @@ app.get('/stack', (req, res) => {
 
 const kv = new KV();
 
-// Add to key-value store
 app.post('/kv', (req, res) => {
   const { key, value, ttl = null } = req.body;
 
@@ -46,7 +45,6 @@ app.post('/kv', (req, res) => {
   res.status(201).send({ key, value });
 });
 
-// Get from key-value store
 app.get('/kv/:key', (req, res) => {
   const key = req.params.key;
 
@@ -58,7 +56,6 @@ app.get('/kv/:key', (req, res) => {
   }
 });
 
-// Delete from key-value store
 app.delete('/kv/:key', (req, res) => {
   const key = req.params.key;
 
@@ -80,7 +77,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`Stack and KV provider is running on port: ${PORT}`);
 });
