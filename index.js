@@ -11,10 +11,13 @@ const stack = new Stack();
 
 app.post('/stack', (req, res) => {
   const { value } = req.body;
+
   if (value === undefined) {
     return res.status(400).send('value is required');
   }
+
   stack.push(value);
+
   res.status(201).send({ stack });
 });
 
@@ -22,6 +25,7 @@ app.get('/stack', (req, res) => {
   if (stack.isEmpty()) {
     return res.status(204).send('stack is empty');
   }
+
   const value = stack.pop();
 
   res.send({ value, stack });
